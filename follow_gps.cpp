@@ -104,7 +104,7 @@ bool follow_gps::Connect()
 {
     socket = new QTcpSocket(this);
     connect(socket,SIGNAL(readyRead()),this,SLOT(Read_Data()));
-    socket->connectToHost("85.105.196.74",30146);
+    socket->connectToHost("192.168.0.16",30146);
     if(socket->waitForConnected(3000))
     {
         qDebug()<<"connected";
@@ -125,63 +125,46 @@ void follow_gps::Read_Data()
 
   QByteArray ba=socket->readAll();
 
-  //if (ba.size() >=44)
-//  gps_log n;
-//  const char *ptr = ba.constData() + 1;
-//  n.msgtype = *ptr;
-//  ptr++;
-//  memcpy(&n.rfu0, ptr, 4);
-//  ptr += 4;
-//  memcpy(&n.rfu1, ptr, 4);
-//  ptr += 4;
-//  memcpy(&n.tm, ptr, 4);
-//  ptr += 4;
-//  memcpy(&n.lat, ptr, 8);
-//  ptr += 8;
-//  memcpy(&n.lon, ptr, 8);
-//  ptr += 8;
-//  memcpy(&n.sig, ptr, 1);
-//  ptr += 1;
-//  memcpy(&n.satcc, ptr, 1);
-//  ptr += 1;
-//  memcpy(&n.speed, ptr, 2);
-//  ptr += 2;
-//  memcpy(&n.direction, ptr, 2);
-//  ptr += 2;
-//  memcpy(&n.height, ptr, 1);
-//  ptr += 1;
-//  memcpy(&n.igsw, ptr, 1);
-//  ptr += 1;
-//  memcpy(&n.dev_id, ptr, 4);
-//  ptr += 4;
+//  if (ba.size() >=44)
+  gps_log n;
+  const char *ptr = ba.constData() + 1;
+  n.msgtype = *ptr;
+  ptr++;
+  memcpy(&n.rfu0, ptr, 4);
+  ptr += 4;
+  memcpy(&n.rfu1, ptr, 4);
+  ptr += 4;
+  memcpy(&n.tm, ptr, 4);
+  ptr += 4;
+  memcpy(&n.lat, ptr, 8);
+  ptr += 8;
+  memcpy(&n.lon, ptr, 8);
+  ptr += 8;
+  memcpy(&n.sig, ptr, 1);
+  ptr += 1;
+  memcpy(&n.satcc, ptr, 1);
+  ptr += 1;
+  memcpy(&n.speed, ptr, 2);
+  ptr += 2;
+  memcpy(&n.direction, ptr, 2);
+  ptr += 2;
+  memcpy(&n.height, ptr, 1);
+  ptr += 1;
+  memcpy(&n.igsw, ptr, 1);
+  ptr += 1;
+  memcpy(&n.dev_id, ptr, 4);
+  ptr += 4;
 
+ qDebug()<<ba.toHex();
 
+ qDebug()<< "Device id : " << n.dev_id << "igsw"<< n.igsw;
+  if(n.dev_id==53)
+  {
+      send_gps(QString::number(convertToDecimal(n.lat)),QString::number(convertToDecimal(n.lon)));
+  }
 
-
-
-// qDebug()<<ba.toHex();
-
-
-
-// qDebug()<< "Device id : " << n.dev_id << "igsw"<< n.igsw;
-
-
-//  if(n.dev_id==22)
-//  {
-//      send_gps(QString::number(convertToDecimal(n.lat)),QString::number(convertToDecimal(n.lon)));
-//  }
-
-      send_gps(lat[repeat],lon[repeat]);
-      repeat++;
-
-
-
-
-
-
-
-
-
+//      send_gps(lat[repeat],lon[repeat]);
+//      repeat++;
 
 
 }

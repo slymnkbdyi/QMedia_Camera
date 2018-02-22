@@ -2,7 +2,7 @@ import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtMultimedia 5.5
 
-import QtCharts 2.2
+//import QtCharts 2.2
 import QtQuick.Controls 1.4
 import QtLocation 5.3
 import QtPositioning 5.8
@@ -353,7 +353,7 @@ Window
                             anchors.fill: parent
                             plugin: mapPlugin
 
-                            zoomLevel:12
+                            zoomLevel:20
                             Route
                             {
                                 id:routeData
@@ -394,10 +394,10 @@ Window
                                 }
                                 Component.onCompleted:
                                 {
-                                    //                                   routeQuery.routeOptimizations=routeQuery.ShortestRoute
-                                    //                                    routeQuery.travelModes=RouteQuery.CarTravel
-                                    //                                  routeModel.update();
-                                    //                                  update();
+//                                                                       routeQuery.routeOptimizations=routeQuery.ShortestRoute
+//                                                                        routeQuery.travelModes=RouteQuery.CarTravel
+//                                                                      routeModel.update();
+//                                                                      update();
 
                                 }
                             }
@@ -416,22 +416,23 @@ Window
                 height: main_rect.height*0.24
                 radius: 15
                 color:"#6495ED"
-                ChartView {
-                    title: "Line"
-                    anchors.fill: parent
-                    antialiasing: true
+//                ChartView
+//                {
+//                    title: "Line"
+//                    anchors.fill: parent
+//                    antialiasing: true
 
-                    LineSeries {
-                        name: "LineSeries"
-                        XYPoint { x: 0; y: 0 }
-                        XYPoint { x: 1.1; y: 2.1 }
-                        XYPoint { x: 1.9; y: 3.3 }
-                        XYPoint { x: 2.1; y: 2.1 }
-                        XYPoint { x: 2.9; y: 4.9 }
-                        XYPoint { x: 3.4; y: 3.0 }
-                        XYPoint { x: 4.1; y: 3.3 }
-                    }
-                }
+//                    LineSeries {
+//                        name: "LineSeries"
+//                        XYPoint { x: 0; y: 0 }
+//                        XYPoint { x: 1.1; y: 2.1 }
+//                        XYPoint { x: 1.9; y: 3.3 }
+//                        XYPoint { x: 2.1; y: 2.1 }
+//                        XYPoint { x: 2.9; y: 4.9 }
+//                        XYPoint { x: 3.4; y: 3.0 }
+//                        XYPoint { x: 4.1; y: 3.3 }
+//                    }
+//                }
             }
         }
 
@@ -444,11 +445,21 @@ Window
             var startCoordinate = QtPositioning.coordinate(parseFloat(lati), parseFloat(longi));
             routeQuery.addWaypoint(startCoordinate);
             marker.coordinate=startCoordinate
-            //   mAp.center=startCoordinate
+             mAp.center=startCoordinate
             mAp.fitViewportToMapItems();
-            mAp.zoomLevel--;
-            mAp.zoomLevel--;
-            //          routeModel.update();
+
+        if(mAp.zoomLevel>18)
+        {
+          mAp.zoomLevel=18
+        }
+
+
+            console.log(mAp.zoomLevel);
+
+
+        //     mAp.zoomLevel--;
+
+//                    routeModel.update();
             console.log(lati,longi);
         }
     }

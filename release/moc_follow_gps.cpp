@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'follow_gps.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'follow_gps.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.8.0. It"
+#error "This file was generated using the moc from 5.9.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -102,7 +102,7 @@ void follow_gps::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 
 const QMetaObject follow_gps::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_follow_gps.data,
-      qt_meta_data_follow_gps,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+      qt_meta_data_follow_gps,  qt_static_metacall, nullptr, nullptr}
 };
 
 
@@ -113,9 +113,9 @@ const QMetaObject *follow_gps::metaObject() const
 
 void *follow_gps::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_follow_gps.stringdata0))
-        return static_cast<void*>(const_cast< follow_gps*>(this));
+        return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
@@ -139,7 +139,7 @@ int follow_gps::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void follow_gps::send_gps(QString _t1, QString _t2)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

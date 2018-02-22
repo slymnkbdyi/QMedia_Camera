@@ -1,4 +1,5 @@
-QT += quick location charts
+QT += quick location
+#QT +=charts
 CONFIG += c++11
 QT += quickcontrols2 network
 # The following define makes your compiler emit warnings if you use
