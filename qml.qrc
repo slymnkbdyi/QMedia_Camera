@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>vid.mp4</file>
+        <file>vid1.mp4</file>
+        <file>Date_Time.qml</file>
+        <file>marker.png</file>
+        <file>mini.png</file>
+    </qresource>
+</RCC>
