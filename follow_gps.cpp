@@ -157,8 +157,8 @@ void follow_gps::Read_Data()
 
  qDebug()<<ba.toHex();
 
- qDebug()<< "Device id : " << n.dev_id << "igsw"<< n.igsw;
-  if(n.dev_id==53)
+ qDebug()<< "Device id : " << n.dev_id << "igsw"<< dev_id;
+  if(QString::number(n.dev_id)==dev_id)
   {
       send_gps(QString::number(convertToDecimal(n.lat)),QString::number(convertToDecimal(n.lon)));
   }

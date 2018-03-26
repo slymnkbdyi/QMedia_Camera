@@ -8,7 +8,7 @@ import QtLocation 5.3
 import QtPositioning 5.8
 import QtQuick.Layouts 1.3
 import Qt.labs.calendar 1.0
-
+import QtQuick.Controls.Styles 1.4
 Window
 {
     visible: true
@@ -124,6 +124,8 @@ Window
                                             width: third_video.width*0.9
                                             source: "qrc:///vid.mp4"
                                             anchors.centerIn: parent
+                                            volume:0
+
                                         }
                                         Component.onCompleted: vid.play();
                                     }
@@ -141,6 +143,7 @@ Window
                                             width: fourth_video.width*0.9
                                             source: "qrc:///vid1.mp4"
                                             anchors.centerIn: parent
+                                            volume: 0
                                         }
                                         Component.onCompleted: vid1.play();
                                     }
@@ -328,7 +331,7 @@ Window
                                 Layout.fillWidth: true
                                 text:"Follow"
 
-                                onClicked:  follow.take_device_id(""+device_id.text)
+                                onClicked:  follow.take_device_id(device_id.text.toString())
                             }
 
                         }
@@ -416,6 +419,104 @@ Window
                 height: main_rect.height*0.24
                 radius: 15
                 color:"#6495ED"
+                CheckBox {
+                    text: "Check Box"
+                    style: CheckBoxStyle {
+                        indicator: Rectangle {
+                                implicitWidth: 16
+                                implicitHeight: 16
+                                radius: 3
+                                border.color: control.activeFocus ? "darkblue" : "gray"
+                                border.width: 1
+                                Rectangle {
+                                    visible: control.checked
+                                    color: "#555"
+                                    border.color: "#333"
+                                    radius: 1
+                                    anchors.margins: 4
+                                    anchors.fill: parent
+                                }
+                        }
+                    }
+                }
+
+                Slider {
+                    anchors.centerIn: parent
+                    style: SliderStyle {
+                        groove: Rectangle {
+                            implicitWidth: 200
+                            implicitHeight: 8
+                            color: "gray"
+                            radius: 8
+                        }
+                        handle: Rectangle {
+                            anchors.centerIn: parent
+                            color: control.pressed ? "white" : "lightgray"
+                            border.color: "gray"
+                            border.width: 2
+                            implicitWidth: 34
+                            implicitHeight: 34
+                            radius: 12
+                        }
+                    }
+                }
+                TabView {
+                    id: frame
+                    anchors.fill: parent
+                    anchors.margins: 4
+                    Tab { title: "Tab 1" }
+                    Tab { title: "Tab 2" }
+                    Tab { title: "Tab 3" }
+
+                    style: TabViewStyle {
+                        frameOverlap: 1
+                        tab: Rectangle {
+                            color: styleData.selected ? "steelblue" :"lightsteelblue"
+                            border.color:  "steelblue"
+                            implicitWidth: Math.max(text.width + 4, 80)
+                            implicitHeight: 20
+                            radius: 2
+                            Text {
+                                id: text
+                                anchors.centerIn: parent
+                                text: styleData.title
+                                color: styleData.selected ? "white" : "black"
+                            }
+                        }
+                        frame: Rectangle { color: "steelblue" }
+                    }
+                }
+                TextField {
+                    style: TextFieldStyle {
+                        textColor: "black"
+                        background: Rectangle {
+                            radius: 2
+                            implicitWidth: 100
+                            implicitHeight: 24
+                            border.color: "#333"
+                            border.width: 1
+                        }
+                    }
+                }
+                ToolBar {
+                    style: ToolBarStyle {
+                        padding {
+                            left: 8
+                            right: 8
+                            top: 3
+                            bottom: 3
+                        }
+                        background: Rectangle {
+                            implicitWidth: 100
+                            implicitHeight: 40
+                            border.color: "#999"
+                            gradient: Gradient {
+                                GradientStop { position: 0 ; color: "#fff" }
+                                GradientStop { position: 1 ; color: "#eee" }
+                            }
+                        }
+                    }
+                }
 //                ChartView
 //                {
 //                    title: "Line"
@@ -459,7 +560,7 @@ Window
 
         //     mAp.zoomLevel--;
 
-//                    routeModel.update();
+                    routeModel.update();
             console.log(lati,longi);
         }
     }
